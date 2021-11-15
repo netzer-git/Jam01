@@ -26,7 +26,7 @@ public class BallManager : MonoBehaviour
 
         this.rb.AddForce(force.normalized * mBallSpeed * Time.deltaTime);
         startVelocity = force.normalized * mBallSpeed * Time.deltaTime;
-        Debug.Log(startVelocity);
+        // Debug.Log(startVelocity);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class BallManager : MonoBehaviour
         if (rb.velocity.magnitude < startVelocity.magnitude)
         {
             this.rb.AddForce(rb.velocity * Time.deltaTime * 2);
-            Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
+            // Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
         }
     }
 }
