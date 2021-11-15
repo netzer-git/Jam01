@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
+
+    public GameManager1 gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+           gameManager = FindObjectOfType<GameManager1>();
     }
 
     // Update is called once per frame
@@ -22,8 +25,13 @@ public class BrickManager : MonoBehaviour
      */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ball"){
+        if (collision.gameObject.tag == "RedBall"){
+            gameManager.AddScore(1);
             Destroy(gameObject);    
+        }
+        else if(collision.gameObject.tag == "BlueBall"){
+            gameManager.AddScore(2);
+            Destroy(gameObject);
         }
         
     }
