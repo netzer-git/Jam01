@@ -42,19 +42,19 @@ public class BlueManager : MonoBehaviour
      */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        BallManager ball = collision.gameObject.GetComponent<BallManager>();
-        if (ball != null)
-        {
-            Vector2 player = this.transform.position;
-            Vector2 contactPoint = collision.GetContact(0).point;
+        // BallManager ball = collision.gameObject.GetComponent<BallManager>();
+        // if (ball != null)
+        // {
+        //     Vector2 player = this.transform.position;
+        //     Vector2 contactPoint = collision.GetContact(0).point;
 
-            float offset = player.x - contactPoint.x;
-            float playerWidth = collision.otherCollider.bounds.size.x / 2;
-            float angle = Vector2.SignedAngle(Vector2.down, ball.GetComponent<Rigidbody2D>().velocity);
-            float bounceAngle = (offset / playerWidth) * (-maxBallBOunce);
-            float newAngle = Mathf.Clamp(angle + bounceAngle, -maxBallBOunce, maxBallBOunce);
-            Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-            ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.down * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
-        }
+        //     float offset = player.x - contactPoint.x;
+        //     float playerWidth = collision.otherCollider.bounds.size.x / 2;
+        //     float angle = Vector2.SignedAngle(Vector2.down, ball.GetComponent<Rigidbody2D>().velocity);
+        //     float bounceAngle = (offset / playerWidth) * (-maxBallBOunce);
+        //     float newAngle = Mathf.Clamp(angle + bounceAngle, -maxBallBOunce, maxBallBOunce);
+        //     Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+        //     ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.down * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
+        // }
     }
 }
