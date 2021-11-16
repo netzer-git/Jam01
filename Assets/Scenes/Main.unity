@@ -3222,6 +3222,10 @@ MonoBehaviour:
   scoreText: {fileID: 93029555}
   player1Life: {fileID: 0}
   player2Life: {fileID: 0}
+  redBallPrefab: {fileID: 8387543113383932319, guid: 6a217049cd8584142b270bd7c24bdf2d, type: 3}
+  blueBallPrefab: {fileID: 7662717764120523930, guid: a372a8ce996d26b4fa517a18b769f172, type: 3}
+  player1DefaultBallSpawn: {fileID: 1889465726}
+  player2DefaultBallSpawn: {fileID: 2052713030}
 --- !u!4 &1631996461
 Transform:
   m_ObjectHideFlags: 0
@@ -3232,7 +3236,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.9296298, y: -6.38, z: -1.7427698}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1889465726}
+  - {fileID: 2052713030}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3602,6 +3608,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6920471687223814637, guid: d8b4f65e592a9fe48bf0e072ad6b28ed, type: 3}
   m_PrefabInstance: {fileID: 563370284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1889465725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889465726}
+  m_Layer: 0
+  m_Name: player1BallSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889465726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889465725}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 6.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1631996461}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1961214659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920471687223814637, guid: d8b4f65e592a9fe48bf0e072ad6b28ed, type: 3}
@@ -3702,6 +3738,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6920471687223814637, guid: d8b4f65e592a9fe48bf0e072ad6b28ed, type: 3}
   m_PrefabInstance: {fileID: 124445852}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2052713029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052713030}
+  m_Layer: 0
+  m_Name: player2BallSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052713030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052713029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.62, y: 7.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1631996461}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2072049112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6920471687223814637, guid: d8b4f65e592a9fe48bf0e072ad6b28ed, type: 3}
@@ -4029,7 +4095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7662717764120523933, guid: a372a8ce996d26b4fa517a18b769f172, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.41
+      value: -2.65
       objectReference: {fileID: 0}
     - target: {fileID: 7662717764120523933, guid: a372a8ce996d26b4fa517a18b769f172, type: 3}
       propertyPath: m_LocalPosition.y

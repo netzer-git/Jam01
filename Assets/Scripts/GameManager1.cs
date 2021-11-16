@@ -11,6 +11,9 @@ public class GameManager1 : MonoBehaviour
     public Text scoreText;
     [SerializeField] private LifeMeterManager player1Life;
     [SerializeField] private LifeMeterManager player2Life;
+
+    [SerializeField] private GameObject redBallPrefab;
+    [SerializeField] private GameObject blueBallPrefab;
     [SerializeField] private Transform player1DefaultBallSpawn;
     [SerializeField] private Transform player2DefaultBallSpawn;
     // Start is called before the first frame update
@@ -50,11 +53,11 @@ public class GameManager1 : MonoBehaviour
     {
         if (playerID == 1)
         {
-
+            Instantiate(redBallPrefab, player1DefaultBallSpawn.position, player1DefaultBallSpawn.rotation);
         }
         else if (playerID == 2)
         {
-
+            Instantiate(blueBallPrefab, player2DefaultBallSpawn.position, player2DefaultBallSpawn.rotation);
         }
         else
         {
