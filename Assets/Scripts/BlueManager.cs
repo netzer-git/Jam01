@@ -12,6 +12,7 @@ public class BlueManager : MonoBehaviour
 
     [SerializeField] private float mPlayerSpeed = 1000f;
     [SerializeField] private float maxBallBOunce = 75f;
+    public int health = 3;
 
 
     // Start is called before the first frame update
@@ -23,15 +24,15 @@ public class BlueManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.W))
         {
             // this.direction = Vector2.left;
-            rbPlayer.AddForce(Vector2.left * mPlayerSpeed * Time.deltaTime);
+            rbPlayer.AddForce(Vector2.up * mPlayerSpeed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.S))
         {
             // this.direction = Vector2.right;
-            rbPlayer.AddForce(Vector2.right * mPlayerSpeed * Time.deltaTime);
+            rbPlayer.AddForce(Vector2.down * mPlayerSpeed * Time.deltaTime);
         }
     }
      

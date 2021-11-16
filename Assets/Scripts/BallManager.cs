@@ -14,19 +14,19 @@ public class BallManager : MonoBehaviour
     void Start()
     {
         Vector2 force = Vector2.zero;
-        force.x = Random.Range(-1f, 1f);
-        if (playerOwner == 1)
+        force.y = Random.Range(-1f, 1f);
+        if (playerOwner == 1) // RED
         {
-            force.y = -1f;
+            force.x = 1f;
         }
-        else if (playerOwner == 2)
+        else if (playerOwner == 2) // BLUE
         {
-            force.y = 1f;
+            force.x = -1f;
         }
 
         this.rb.AddForce(force.normalized * mBallSpeed * Time.deltaTime);
         startVelocity = force.normalized * mBallSpeed * Time.deltaTime;
-        Debug.Log(startVelocity);
+        // Debug.Log(startVelocity);
     }
 
     // Update is called once per frame
@@ -36,7 +36,7 @@ public class BallManager : MonoBehaviour
         if (rb.velocity.magnitude < startVelocity.magnitude)
         {
             this.rb.AddForce(rb.velocity * Time.deltaTime * 2);
-            Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
+            // Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
         }
     }
 }
