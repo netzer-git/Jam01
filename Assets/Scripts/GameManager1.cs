@@ -14,8 +14,8 @@ public class GameManager1 : MonoBehaviour
 
     [SerializeField] private GameObject redBallPrefab;
     [SerializeField] private GameObject blueBallPrefab;
-    [SerializeField] private Transform player1DefaultBallSpawn;
-    [SerializeField] private Transform player2DefaultBallSpawn;
+    [SerializeField] private Vector3 player1DefaultBallSpawn;
+    [SerializeField] private Vector3 player2DefaultBallSpawn;
     // Start is called before the first frame update
     void Start()
     {   
@@ -53,11 +53,11 @@ public class GameManager1 : MonoBehaviour
     {
         if (playerID == 1)
         {
-            Instantiate(redBallPrefab, player1DefaultBallSpawn.position, player1DefaultBallSpawn.rotation);
+            Instantiate(redBallPrefab, player1DefaultBallSpawn, Quaternion.identity);
         }
         else if (playerID == 2)
         {
-            Instantiate(blueBallPrefab, player2DefaultBallSpawn.position, player2DefaultBallSpawn.rotation);
+            Instantiate(blueBallPrefab, player2DefaultBallSpawn, Quaternion.identity);
         }
         else
         {
