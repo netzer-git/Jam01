@@ -11,6 +11,8 @@ public class GameManager1 : MonoBehaviour
     public Text scoreText;
     [SerializeField] private LifeMeterManager player1Life;
     [SerializeField] private LifeMeterManager player2Life;
+    [SerializeField] private Transform player1DefaultBallSpawn;
+    [SerializeField] private Transform player2DefaultBallSpawn;
     // Start is called before the first frame update
     void Start()
     {   
@@ -42,5 +44,21 @@ public class GameManager1 : MonoBehaviour
         }
         scoreText.text = "Red: " + redScore + ", Blue: " + blueScore;
         //Debug.Log("Red's score: " + redScore + ", Blue's score: " + blueScore);
+    }
+
+    public void InstantiateNewBall(int playerID)
+    {
+        if (playerID == 1)
+        {
+
+        }
+        else if (playerID == 2)
+        {
+
+        }
+        else
+        {
+            throw new System.Exception("Player ID is invalid");
+        }
     }
 }
