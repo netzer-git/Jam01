@@ -12,7 +12,9 @@ public class RedManager : MonoBehaviour
 
     [SerializeField] private float mPlayerSpeed = 1000f;
     [SerializeField] private float maxBallBOunce = 75f;
-    public int health = 3;
+    public float MIN_HEIGHT;
+    public float MAX_HEIGHT;
+    public LifeMeterManager lifeMeter;
 
 
     // Start is called before the first frame update
@@ -27,13 +29,14 @@ public class RedManager : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow))
         {
             float delta = Time.deltaTime * mPlayerSpeed;
-            // this.direction = Vector2.left;
-            rbPlayer.AddForce(Vector2.up * mPlayerSpeed * Time.deltaTime);
+            float newY = Mathf.Clamp(transform.position.y + delta, MIN_HEIGHT, MAX_HEIGHT); 
+            transform.position = new Vector3(transform.position.x,newY,transform.position.z); 
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            // this.direction = Vector2.right;
-            rbPlayer.AddForce(Vector2.down * mPlayerSpeed * Time.deltaTime);
+            float delta = Time.deltaTime * mPlayerSpeed;
+            float newY = Mathf.Clamp(transform.position.y - delta, MIN_HEIGHT, MAX_HEIGHT); 
+            transform.position = new Vector3(transform.position.x,newY,transform.position.z);
         }
     }
 
@@ -43,19 +46,26 @@ public class RedManager : MonoBehaviour
      */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // BallManager ball = collision.gameObject.GetComponent<BallManager>();
-        // if (ball != null)
-        // {
-        //     Vector2 player = this.transform.position;
-        //     Vector2 contactPoint = collision.GetContact(0).point;
+        BallManager ball = collision.gameObject.GetComponent<BallManager>();
+        if (ball != null)
+        {
+            Vector2 player = this.transform.position;
+            Vector2 contactPoint = collision.GetContact(0).point;
 
-        //     float offset = player.x - contactPoint.x;
-        //     float playerWidth = collision.otherCollider.bounds.size.x / 2;
-        //     float angle = Vector2.SignedAngle(Vector2.up, ball.GetComponent<Rigidbody2D>().velocity);
-        //     float bounceAngle = (offset / playerWidth) * maxBallBOunce;
-        //     float newAngle = Mathf.Clamp(angle + bounceAngle, -maxBallBOunce, maxBallBOunce);
-        //     Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-        //     ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.up * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
-        // }
+            float offset = player.y - contactPoint.y;
+            float playerWidth = collision.otherCollider.bounds.size.y / 2;
+            float angle = Vector2.SignedAngle(Vector2.left, ball.GetComponent<Rigidbody2D>().velocity);
+            float bounceAngle = (offset / playerWidth) * maxBallBOunce;
+            float newAngle = Mathf.Clamp(angle + bounceAngle, -maxBallBOunce, maxBallBOunce);
+            Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+            ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.left * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
+        }
+
+    }
+    private void OnTriggerEnter2D(Collider2D collider){
+        BulletManager bullet = collider.gameObject.GetComponent<BulletManager>();
+        if (bullet != null){
+            lifeMeter.DecreaseLife();
+        }
     }
 }
