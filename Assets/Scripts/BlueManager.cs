@@ -42,11 +42,11 @@ public class BlueManager : MonoBehaviour
      */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        BallManager ball = collision.gameObject.GetComponent<BallManager>();
-        if (ball != null)
-        {
-            Vector2 player = this.transform.position;
-            Vector2 contactPoint = collision.GetContact(0).point;
+        // BallManager ball = collision.gameObject.GetComponent<BallManager>();
+        // if (ball != null)
+        // {
+        //     Vector2 player = this.transform.position;
+        //     Vector2 contactPoint = collision.GetContact(0).point;
 
             float offset = player.y - contactPoint.y;
             float playerWidth = collision.otherCollider.bounds.size.y / 2;
@@ -56,5 +56,6 @@ public class BlueManager : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
             ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.right * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
         }
+
     }
 }

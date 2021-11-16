@@ -26,6 +26,7 @@ public class RedManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
+            float delta = Time.deltaTime * mPlayerSpeed;
             // this.direction = Vector2.left;
             rbPlayer.AddForce(Vector2.up * mPlayerSpeed * Time.deltaTime);
         }
@@ -42,11 +43,11 @@ public class RedManager : MonoBehaviour
      */
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        BallManager ball = collision.gameObject.GetComponent<BallManager>();
-        if (ball != null)
-        {
-            Vector2 player = this.transform.position;
-            Vector2 contactPoint = collision.GetContact(0).point;
+        // BallManager ball = collision.gameObject.GetComponent<BallManager>();
+        // if (ball != null)
+        // {
+        //     Vector2 player = this.transform.position;
+        //     Vector2 contactPoint = collision.GetContact(0).point;
 
             float offset = player.y - contactPoint.y;
             float playerWidth = collision.otherCollider.bounds.size.y / 2;

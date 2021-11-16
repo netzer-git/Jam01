@@ -6,7 +6,13 @@ public class BallManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float mBallSpeed = 500f;
+
     [SerializeField] public int playerOwner = 0;
+
+
+    [SerializeField] private int playerOwner = 0;
+    public float speedX = 20f;
+    public float speedY = 20f;
 
     private Vector2 startVelocity;
 
@@ -17,14 +23,16 @@ public class BallManager : MonoBehaviour
         force.y = Random.Range(-1f, 1f);
         if (playerOwner == 1) // RED
         {
+            
             force.x = 1f;
         }
         else if (playerOwner == 2) // BLUE
         {
+            speedX = -speedX;
             force.x = -1f;
         }
-
-        this.rb.AddForce(force.normalized * mBallSpeed * Time.deltaTime);
+        rb.velocity = (new Vector2(speedX, speedY));
+        //this.rb.AddForce(force.normalized * mBallSpeed * Time.deltaTime);
         startVelocity = force.normalized * mBallSpeed * Time.deltaTime;
         // Debug.Log(startVelocity);
     }
@@ -35,7 +43,7 @@ public class BallManager : MonoBehaviour
         // in case of the ball getting slower - apply more force.
         if (rb.velocity.magnitude < startVelocity.magnitude)
         {
-            this.rb.AddForce(rb.velocity * Time.deltaTime * 2);
+            //this.rb.AddForce(rb.velocity * Time.deltaTime * 2);
             // Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
         }
     }
