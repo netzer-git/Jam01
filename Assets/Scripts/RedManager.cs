@@ -49,13 +49,13 @@ public class RedManager : MonoBehaviour
         //     Vector2 player = this.transform.position;
         //     Vector2 contactPoint = collision.GetContact(0).point;
 
-        //     float offset = player.x - contactPoint.x;
-        //     float playerWidth = collision.otherCollider.bounds.size.x / 2;
-        //     float angle = Vector2.SignedAngle(Vector2.up, ball.GetComponent<Rigidbody2D>().velocity);
-        //     float bounceAngle = (offset / playerWidth) * maxBallBOunce;
-        //     float newAngle = Mathf.Clamp(angle + bounceAngle, -maxBallBOunce, maxBallBOunce);
-        //     Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-        //     ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.up * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
-        // }
+            float offset = player.y - contactPoint.y;
+            float playerWidth = collision.otherCollider.bounds.size.y / 2;
+            float angle = Vector2.SignedAngle(Vector2.left, ball.GetComponent<Rigidbody2D>().velocity);
+            float bounceAngle = (offset / playerWidth) * maxBallBOunce;
+            float newAngle = Mathf.Clamp(angle + bounceAngle, -maxBallBOunce, maxBallBOunce);
+            Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
+            ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.left * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
+        }
     }
 }
