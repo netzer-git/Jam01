@@ -62,9 +62,11 @@ public class RedManager : MonoBehaviour
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collider){
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
         BulletManager bullet = collider.gameObject.GetComponent<BulletManager>();
-        if (bullet != null){
+        if (bullet != null)
+        {
             lifeMeter.DecreaseLife();
         }
     }
