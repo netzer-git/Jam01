@@ -60,7 +60,7 @@ public class BlueManager : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
             ball.GetComponent<Rigidbody2D>().velocity = rotation * Vector2.right * ball.GetComponent<Rigidbody2D>().velocity.magnitude;
         }
-        
+      
     }
 
     private void OnTriggerEnter2D(Collider2D collider){
