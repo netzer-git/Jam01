@@ -6,7 +6,7 @@ public class BallManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float mBallSpeed = 500f;
-    [SerializeField] private int playerOwner = 0;
+    [SerializeField] public int playerOwner = 0;
 
     private Vector2 startVelocity;
 
@@ -38,5 +38,10 @@ public class BallManager : MonoBehaviour
             this.rb.AddForce(rb.velocity * Time.deltaTime * 2);
             // Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
         }
+    }
+
+    public int GetOwner()
+    {
+        return playerOwner;
     }
 }
