@@ -6,45 +6,33 @@ public class BallManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float mBallSpeed = 500f;
+    private float minVelocity = 2;
 
     [SerializeField] public int playerOwner = 0;
 
-
-    [SerializeField] private int playerOwner = 0;
-    public float speedX = 20f;
-    public float speedY = 20f;
-
-    private Vector2 startVelocity;
+    public Vector2 startVelocity = new Vector2(3f, 3f);
 
     // Start is called before the first frame update
     void Start()
     {
-        Vector2 force = Vector2.zero;
-        force.y = Random.Range(-1f, 1f);
-        if (playerOwner == 1) // RED
+        if (playerOwner == 2) // BLUE
         {
-            
-            force.x = 1f;
+            startVelocity.x = -startVelocity.x;
         }
-        else if (playerOwner == 2) // BLUE
-        {
-            speedX = -speedX;
-            force.x = -1f;
-        }
-        rb.velocity = (new Vector2(speedX, speedY));
-        //this.rb.AddForce(force.normalized * mBallSpeed * Time.deltaTime);
-        startVelocity = force.normalized * mBallSpeed * Time.deltaTime;
-        // Debug.Log(startVelocity);
+        rb.velocity = startVelocity;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // in case of the ball getting slower - apply more force.
-        if (rb.velocity.magnitude < startVelocity.magnitude)
+        if (rb.velocity.magnitude != startVelocity.magnitude)
         {
-            //this.rb.AddForce(rb.velocity * Time.deltaTime * 2);
-            // Debug.Log("PUSH" + rb.velocity * Time.deltaTime * 2);
+            float difference = startVelocity.magnitude / rb.velocity.magnitude;
+            rb.velocity = difference * rb.velocity;
+            if (Mathf.Abs(rb.velocity.x) < minVelocity){
+                rb.velocity = new Vector2(rb.velocity.x * 5, rb.velocity.y); 
+            }
         }
     }
 
