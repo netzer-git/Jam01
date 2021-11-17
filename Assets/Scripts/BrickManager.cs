@@ -26,11 +26,11 @@ public class BrickManager : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "RedBall"){
-            gameManager.AddScore(1, 1);
+            // gameManager.AddScore(1, 1);
             Destroy(gameObject);    
         }
         else if(collision.gameObject.tag == "BlueBall"){
-            gameManager.AddScore(2, 1);
+            // gameManager.AddScore(2, 1);
             Destroy(gameObject);
         }
         
