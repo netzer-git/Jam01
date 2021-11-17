@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager1 : MonoBehaviour
 {
@@ -12,10 +12,8 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private LifeMeterManager player1Life;
     [SerializeField] private LifeMeterManager player2Life;
 
-    [SerializeField] private GameObject redBallPrefab;
-    [SerializeField] private GameObject blueBallPrefab;
-    [SerializeField] private Vector3 player1DefaultBallSpawn;
-    [SerializeField] private Vector3 player2DefaultBallSpawn;
+    [SerializeField] private GameObject player1ShootPoint;
+    [SerializeField] private GameObject player2ShootPoint;
     // Start is called before the first frame update
     void Start()
     {   
@@ -33,6 +31,13 @@ public class GameManager1 : MonoBehaviour
         else if (player2Life.GetRemainingLife() == 0)
         {
             // player 2 lose / player 1 win
+        }
+
+
+        // restart game
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -53,11 +58,11 @@ public class GameManager1 : MonoBehaviour
     {
         if (playerID == 1)
         {
-            Instantiate(redBallPrefab, player1DefaultBallSpawn, Quaternion.identity);
+            player1ShootPoint.GetComponent<WeaponManager>().createNewBall();
         }
         else if (playerID == 2)
         {
-            Instantiate(blueBallPrefab, player2DefaultBallSpawn, Quaternion.identity);
+            player2ShootPoint.GetComponent<WeaponManager>().createNewBall();
         }
         else
         {

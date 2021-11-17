@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 134351381}
   - component: {fileID: 134351382}
   m_Layer: 0
-  m_Name: LeftFirePoint
+  m_Name: RedFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,8 +649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 134351381}
-  bulletPref: {fileID: 5808136852178335253, guid: 65066cb558e802145b6fb4e2e059d448, type: 3}
   fireKey: 32
+  playerBallPref: {fileID: 5319700527255837679, guid: 6a217049cd8584142b270bd7c24bdf2d, type: 3}
 --- !u!1 &225187587
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,10 +685,8 @@ MonoBehaviour:
   scoreText: {fileID: 1516432780}
   player1Life: {fileID: 708680773}
   player2Life: {fileID: 1405739633}
-  redBallPrefab: {fileID: 5319700527255837679, guid: 6a217049cd8584142b270bd7c24bdf2d, type: 3}
-  blueBallPrefab: {fileID: 6639246503732238437, guid: a372a8ce996d26b4fa517a18b769f172, type: 3}
-  player1DefaultBallSpawn: {x: 2.5, y: 0, z: 0}
-  player2DefaultBallSpawn: {x: -2.5, y: 0, z: 0}
+  player1ShootPoint: {fileID: 134351380}
+  player2ShootPoint: {fileID: 1067434879}
 --- !u!4 &225187589
 Transform:
   m_ObjectHideFlags: 0
@@ -2135,8 +2133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1067434880}
-  bulletPref: {fileID: 5808136852178335253, guid: 65066cb558e802145b6fb4e2e059d448, type: 3}
   fireKey: 9
+  playerBallPref: {fileID: 6639246503732238437, guid: a372a8ce996d26b4fa517a18b769f172, type: 3}
 --- !u!1001 &1082879557
 PrefabInstance:
   m_ObjectHideFlags: 0

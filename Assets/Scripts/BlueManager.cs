@@ -20,7 +20,7 @@ public class BlueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // this.rb = GetComponent<Rigidbody2D>(); // are we sure we need this?
+
     }
 
     // Update is called once per frame
