@@ -19,8 +19,8 @@ public class GameManager1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player1ScoreText.text = redScore.ToString();
-        player2ScoreText.text = blueScore.ToString();
+        player1ScoreText.text = scoreToString(redScore);
+        player2ScoreText.text = scoreToString(blueScore);
     }
 
     // Update is called once per frame
@@ -50,14 +50,34 @@ public class GameManager1 : MonoBehaviour
         if (playerID == 1)
         { 
             redScore += pointsToAdd;
-            player1ScoreText.text = redScore.ToString();
+            player1ScoreText.text = scoreToString(redScore);
         }
         else
         {
             blueScore += pointsToAdd;
-            player2ScoreText.text = blueScore.ToString();
+            player2ScoreText.text = scoreToString(blueScore);
         }
         //Debug.Log("Red's score: " + redScore + ", Blue's score: " + blueScore);
+    }
+
+    private static string scoreToString(int score)
+    {
+        if (score < 10)
+        {
+            return "00" + score;
+        }
+        else if (score < 100)
+        {
+            return "0" + score;
+        }
+        else if (score < 1_000)
+        {
+            return score.ToString();
+        }
+        else
+        {
+            throw new System.Exception("the Score is too high");
+        }
     }
 
     public void InstantiateNewBall(int playerID)
