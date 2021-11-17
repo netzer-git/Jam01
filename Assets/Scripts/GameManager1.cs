@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager1 : MonoBehaviour
 {
-    public int redScore = 0;
-    public int blueScore = 0;
 
+    [SerializeField] private int player1Score = 0;
+    [SerializeField] private int player2Score = 0;
     [SerializeField] private Text player1ScoreText;
     [SerializeField] private Text player2ScoreText;
     // [SerializeField] private LifeMeterManager player1Life;
@@ -16,18 +16,29 @@ public class GameManager1 : MonoBehaviour
 
     [SerializeField] private GameObject player1ShootPoint;
     [SerializeField] private GameObject player2ShootPoint;
+
+    // TODO: temporary:
+    [SerializeField] private Canvas winCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
-        player1ScoreText.text = scoreToString(redScore);
-        player2ScoreText.text = scoreToString(blueScore);
+        player1ScoreText.text = scoreToString(player1Score);
+        player2ScoreText.text = scoreToString(player2Score);
     }
 
     // Update is called once per frame
     void Update()
     {
         // check for game's end 
-        // (???)
+        if (player1Score == 5)
+        {
+            EndLevel(1);
+        }
+        else if (player2Score == 5)
+        {
+            EndLevel(2);
+        }
 
         //if (player1Life.GetRemainingLife() == 0)
         //{
@@ -48,14 +59,14 @@ public class GameManager1 : MonoBehaviour
 
     public void AddGoal(int playerID, int pointsToAdd){
         if (playerID == 1)
-        { 
-            redScore += pointsToAdd;
-            player1ScoreText.text = scoreToString(redScore);
+        {
+            player1Score += pointsToAdd;
+            player1ScoreText.text = scoreToString(player1Score);
         }
         else
         {
-            blueScore += pointsToAdd;
-            player2ScoreText.text = scoreToString(blueScore);
+            player2Score += pointsToAdd;
+            player2ScoreText.text = scoreToString(player2Score);
         }
         //Debug.Log("Red's score: " + redScore + ", Blue's score: " + blueScore);
     }
@@ -94,5 +105,12 @@ public class GameManager1 : MonoBehaviour
         {
             throw new System.Exception("Player ID is invalid");
         }
+    }
+
+    private void EndLevel(int winnerID)
+    {
+        Time.timeScale = 0;
+        winCanvas.gameObject.SetActive(true);
+        winCanvas.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player " + winnerID + " has won!";
     }
 }

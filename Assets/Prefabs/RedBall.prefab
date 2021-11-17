@@ -137,4 +137,4 @@ MonoBehaviour:
   rb: {fileID: 5319700527255837586}
   mBallSpeed: 1000
   playerOwner: 1
-  startVelocity: {x: 3, y: 3}
+  startVelocity: {x: 3, y: 0}
