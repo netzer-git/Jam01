@@ -17,7 +17,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(fireKey)){
-            Instantiate(bulletPref, firePoint.position, firePoint.rotation);
+            // Instantiate(bulletPref, firePoint.position, firePoint.rotation);
         }
     }
 }
