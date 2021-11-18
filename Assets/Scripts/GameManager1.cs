@@ -17,12 +17,14 @@ public class GameManager1 : MonoBehaviour
     [SerializeField] private GameObject player1ShootPoint;
     [SerializeField] private GameObject player2ShootPoint;
 
-    // TODO: temporary:
+    // TODO: temporary
     [SerializeField] private Canvas winCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1; // start time (in case of pause)
+
         player1ScoreText.text = scoreToString(player1Score);
         player2ScoreText.text = scoreToString(player2Score);
     }
@@ -107,9 +109,12 @@ public class GameManager1 : MonoBehaviour
         }
     }
 
+    /**
+     * finish the current level
+     */
     private void EndLevel(int winnerID)
     {
-        Time.timeScale = 0;
+        Time.timeScale = 0; // stop the level - if we have another one, probably need to start it again
         winCanvas.gameObject.SetActive(true);
         winCanvas.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player " + winnerID + " has won!";
     }
