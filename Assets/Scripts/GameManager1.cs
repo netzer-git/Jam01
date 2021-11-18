@@ -4,27 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager1 : MonoBehaviour
 {
-
     [SerializeField] private int player1Score = 0;
     [SerializeField] private int player2Score = 0;
+    [SerializeField] private int player1NumBalls = 1;
+    [SerializeField] private int player2NumBalls = 1;
     [SerializeField] private Text player1ScoreText;
     [SerializeField] private Text player2ScoreText;
-    // [SerializeField] private LifeMeterManager player1Life;
-    // [SerializeField] private LifeMeterManager player2Life;
-
     [SerializeField] private GameObject player1ShootPoint;
     [SerializeField] private GameObject player2ShootPoint;
-
-    // TODO: temporary
     [SerializeField] private Canvas winCanvas;
-
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         Time.timeScale = 1; // start time (in case of pause)
-
         player1ScoreText.text = scoreToString(player1Score);
         player2ScoreText.text = scoreToString(player2Score);
     }
@@ -32,7 +27,6 @@ public class GameManager1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // check for game's end 
         if (player1Score == 5)
         {
             EndLevel(1);
@@ -41,18 +35,6 @@ public class GameManager1 : MonoBehaviour
         {
             EndLevel(2);
         }
-
-        //if (player1Life.GetRemainingLife() == 0)
-        //{
-            // first phase of the game ends
-        //}
-        //else if (player2Life.GetRemainingLife() == 0)
-        //{
-            // player 2 lose / player 1 win
-        //}
-
-
-        // FIXME: restart game - Test case helper
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(0);
@@ -97,17 +79,46 @@ public class GameManager1 : MonoBehaviour
     {
         if (playerID == 1)
         {
-            player1ShootPoint.GetComponent<WeaponManager>().createNewBall();
+            player1ShootPoint.GetComponent<BallSpawnerScript>().createNewBall();
+            player1NumBalls ++;
         }
         else if (playerID == 2)
         {
-            player2ShootPoint.GetComponent<WeaponManager>().createNewBall();
+            player2ShootPoint.GetComponent<BallSpawnerScript>().createNewBall();
+            player2NumBalls ++;
         }
         else
         {
             throw new System.Exception("Player ID is invalid");
         }
     }
+    public void HandleGoal(int playerID, bool isGoal){
+        int winner = isGoal ? playerID : getOtherID(playerID);
+        AddGoal(winner, 1);
+        if (playerID == 1){
+            player1NumBalls -- ;
+            if (player1NumBalls == 0){
+                InstantiateNewBall(playerID);
+            }
+        }
+        else if (playerID == 2){
+            player2NumBalls -- ;
+            if (player2NumBalls == 0){
+                InstantiateNewBall(playerID);
+            }
+        }
+    }
+
+
+    private int getOtherID(int playerOwner)
+    {
+        if (playerOwner == 1)
+        {
+            return 2;
+        }
+        return 1; 
+    }
+
 
     /**
      * finish the current level
@@ -119,3 +130,4 @@ public class GameManager1 : MonoBehaviour
         winCanvas.transform.GetChild(1).gameObject.GetComponent<Text>().text = "Player " + winnerID + " has won!";
     }
 }
+
