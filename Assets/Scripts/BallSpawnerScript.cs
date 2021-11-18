@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class BallSpawnerScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform firePoint;
     // public GameObject bulletPref;
     public KeyCode fireKey;
-
+    
+    public GameObject wallToAttack;
+    public GameObject wallToDefend;
     [SerializeField] private GameObject playerBallPref;
+    //[SerializeField] private GameObject bonusPlayerBallPref;
     private GameObject ball = null;
     void Start()
     {
@@ -23,6 +26,7 @@ public class WeaponManager : MonoBehaviour
         {
             ball.GetComponent<BallManager>().shootTheBall();
             ball.transform.SetParent(null);
+            
             ball = null;
         }
     }
@@ -32,7 +36,11 @@ public class WeaponManager : MonoBehaviour
         if (ball == null)
         {
             ball = Instantiate(playerBallPref, firePoint.position, firePoint.rotation);
+            BallManager bm = ball.GetComponent<BallManager>();
             ball.transform.SetParent(firePoint);
+            bm.wallToAttack = wallToAttack;
+            bm.wallToDefend = wallToDefend;
+            //bm.isBonus = isBonus;
         }
     }
 }
