@@ -9,8 +9,8 @@ public class GameManager1 : MonoBehaviour
 {
     [SerializeField] private int player1Score = 0;
     [SerializeField] private int player2Score = 0;
-    [SerializeField] private int player1NumBalls = 1;
-    [SerializeField] private int player2NumBalls = 1;
+    [SerializeField] private int player1NumBalls = 0;
+    [SerializeField] private int player2NumBalls = 0;
     [SerializeField] private Text player1ScoreText;
     [SerializeField] private Text player2ScoreText;
     [SerializeField] private GameObject player1ShootPoint;
@@ -22,6 +22,9 @@ public class GameManager1 : MonoBehaviour
         Time.timeScale = 1; // start time (in case of pause)
         player1ScoreText.text = scoreToString(player1Score);
         player2ScoreText.text = scoreToString(player2Score);
+
+        InstantiateNewBall(1);
+        InstantiateNewBall(2);
     }
 
     // Update is called once per frame
@@ -35,6 +38,11 @@ public class GameManager1 : MonoBehaviour
         {
             EndLevel(2);
         }
+
+        Debug.Log(player1NumBalls);
+
+
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(0);
@@ -92,18 +100,23 @@ private static string scoreToString(int score)
             throw new System.Exception("Player ID is invalid");
         }
     }
-    public void HandleGoal(int playerID, bool isGoal){
+    public void HandleGoal(int playerID, bool isGoal)
+    {
         int winner = isGoal ? playerID : getOtherID(playerID);
         AddGoal(winner, 1);
-        if (playerID == 1){
-            player1NumBalls -- ;
-            if (player1NumBalls == 0){
+        if (playerID == 1)
+        {
+            player1NumBalls--;
+            if (player1NumBalls == 0)
+            {
                 InstantiateNewBall(playerID);
             }
         }
-        else if (playerID == 2){
-            player2NumBalls -- ;
-            if (player2NumBalls == 0){
+        else if (playerID == 2)
+        {
+            player2NumBalls--;
+            if (player2NumBalls == 0)
+            {
                 InstantiateNewBall(playerID);
             }
         }
@@ -112,11 +125,7 @@ private static string scoreToString(int score)
 
     private int getOtherID(int playerOwner)
     {
-        if (playerOwner == 1)
-        {
-            return 2;
-        }
-        return 1; 
+        return playerOwner == 1 ? 2 : 1;
     }
 
 
