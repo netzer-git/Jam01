@@ -24,31 +24,31 @@ public class WallManager : MonoBehaviour
     {
         // TODO: decide who "owns" the balls (maybe the gameManager) - and decide if we need to create more balls
 
-        if (col.gameObject.GetComponent<BallManager>().GetOwner() == 1 && wallOwner == 1)
-        {
-            // lifeMeter.DecreaseLife();
-            gameManager.AddGoal(2, 1);
-            Destroy(col.gameObject);
-            gameManager.InstantiateNewBall(1);
-        }
-        else if (col.gameObject.GetComponent<BallManager>().GetOwner() == 2 && wallOwner == 1)
-        {
-            gameManager.AddGoal(2, 1);
-            Destroy(col.gameObject);
-            gameManager.InstantiateNewBall(2);
-        }
-        if (col.gameObject.GetComponent<BallManager>().GetOwner() == 1 && wallOwner == 2)
-        {
-            gameManager.AddGoal(1, 1);
-            Destroy(col.gameObject);
-            gameManager.InstantiateNewBall(1);
-        }
-        else if (col.gameObject.GetComponent<BallManager>().GetOwner() == 2 && wallOwner == 2)
-        {
-            // lifeMeter.DecreaseLife();
-            gameManager.AddGoal(1, 1);
-            Destroy(col.gameObject);
-            gameManager.InstantiateNewBall(2);
-        }
+        // if (col.gameObject.GetComponent<BallManager>().GetOwner() == 1 && wallOwner == 1)
+        // {
+        //     // lifeMeter.DecreaseLife();
+        //     gameManager.AddGoal(2, 1);
+        //     Destroy(col.gameObject);
+        //     gameManager.InstantiateNewBall(1);
+        // }
+        // else if (col.gameObject.GetComponent<BallManager>().GetOwner() == 2 && wallOwner == 1)
+        // {
+        //     gameManager.AddGoal(2, 1);
+        //     Destroy(col.gameObject);
+        //     gameManager.InstantiateNewBall(2);
+        // }
+        // if (col.gameObject.GetComponent<BallManager>().GetOwner() == 1 && wallOwner == 2)
+        // {
+        //     gameManager.AddGoal(1, 1);
+        //     Destroy(col.gameObject);
+        //     gameManager.InstantiateNewBall(1);
+        // }
+        // else if (col.gameObject.GetComponent<BallManager>().GetOwner() == 2 && wallOwner == 2)
+        // {
+        //     // lifeMeter.DecreaseLife();
+        //     gameManager.AddGoal(1, 1);
+        //     Destroy(col.gameObject);
+        //     gameManager.InstantiateNewBall(2);
+        // }
     }
 }
