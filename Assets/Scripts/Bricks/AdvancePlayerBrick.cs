@@ -6,10 +6,10 @@ public class AdvancePlayerBrick : BrickManager
 {
     protected override void BrickBehavior(int playerID, BallManager bm){
         if (playerID == 1){
-            player1.transform.position = player1.transform.position + player1.transform.up;
+            player1.transform.position = player1.transform.position - player1.transform.right;
         }
         if (playerID == 2){
-            player2.transform.position = player2.transform.position - player2.transform.up;
+            player2.transform.position = player2.transform.position + player2.transform.right;
         }
         Destroy(gameObject);   
     }

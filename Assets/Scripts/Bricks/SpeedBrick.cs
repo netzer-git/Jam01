@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpeedBrick : BrickManager
 {
-    public int speedFactor = 2;
+    public float speedFactor = 1.5f;
     protected override void BrickBehavior(int playerID, BallManager bm){
         bm.startVelocity = speedFactor * bm.startVelocity;
+        bm.constVelocity = speedFactor * bm.constVelocity;
         Destroy(gameObject);   
     }
 }

@@ -29,6 +29,10 @@ public class BallSpawnerScript : MonoBehaviour
             
             ball = null;
         }
+        if (ball)
+        {
+            ball.transform.position = GetComponentInParent<Transform>().position;
+        }
     }
 
     public void createNewBall()

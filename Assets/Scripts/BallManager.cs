@@ -6,13 +6,14 @@ public class BallManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float mBallSpeed = 500f;
-    private float minVelocity = 2;
+    private float minVelocity = 2f;
 
     [SerializeField] public int playerOwner = 0;
     //public bool isBonus;
     private bool hasBeenShot;
 
     public Vector2 startVelocity;
+    public float constVelocity;
     public GameObject wallToAttack;
     public GameObject wallToDefend;
     public GameManager1 gameManager;
@@ -21,6 +22,7 @@ public class BallManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager1>();
+        
         startVelocity = new Vector2(0f, 0f);
         // Notice: the ball is not moving here. 
     }
@@ -44,14 +46,21 @@ public class BallManager : MonoBehaviour
     void FixedUpdate()
     {
         // in case of the ball getting slower - apply more force.
-        if (rb.velocity.magnitude != startVelocity.magnitude)
-        {
-            float difference = startVelocity.magnitude / rb.velocity.magnitude;
-            rb.velocity = difference * rb.velocity;
+        if (rb.velocity.sqrMagnitude != constVelocity * constVelocity){
+            rb.velocity = rb.velocity.normalized * constVelocity;
             if (Mathf.Abs(rb.velocity.x) < minVelocity){
                 rb.velocity = new Vector2(rb.velocity.x * 5, rb.velocity.y); 
             }
         }
+        
+        // if (rb.velocity.magnitude != startVelocity.magnitude)
+        // {
+        //     float difference = startVelocity.magnitude / rb.velocity.magnitude;
+        //     rb.velocity = difference * rb.velocity;
+        //     if (Mathf.Abs(rb.velocity.x) < minVelocity){
+        //         rb.velocity = new Vector2(rb.velocity.x * 5, rb.velocity.y); 
+        //     }
+        // }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

@@ -10,6 +10,9 @@ public class RedManager : MonoBehaviour
     [SerializeField] private Rigidbody2D rbPlayer;
     [SerializeField] private Vector2 direction;
 
+    public KeyCode shotKey;
+    [SerializeField] private GameObject player1ShotPref;
+
     [SerializeField] private float mPlayerSpeed = 1000f;
     [SerializeField] private float maxBallBOunce = 75f;
     public float MIN_HEIGHT;
@@ -37,6 +40,10 @@ public class RedManager : MonoBehaviour
             float delta = Time.deltaTime * mPlayerSpeed;
             float newY = Mathf.Clamp(transform.position.y - delta, MIN_HEIGHT, MAX_HEIGHT); 
             transform.position = new Vector3(transform.position.x,newY,transform.position.z);
+        }
+        if (Input.GetKeyDown(shotKey))
+        {
+            ShootShot();
         }
     }
 
@@ -67,5 +74,14 @@ public class RedManager : MonoBehaviour
         if (bullet != null){
             lifeMeter.DecreaseLife();
         }
+    }
+
+    private void ShootShot()
+    {
+        Transform firePoint = transform.Find("FirePoint1").transform;
+        GameObject clone = Instantiate(player1ShotPref, firePoint.position, firePoint.rotation);
+        clone.transform.Rotate(0, 0, 90);
+        Destroy(clone, 4f);
+        clone.GetComponent<Rigidbody2D>().velocity = Vector2.left * 15;
     }
 }

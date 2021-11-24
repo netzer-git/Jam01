@@ -30,11 +30,11 @@ public class BrickManager : MonoBehaviour
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "RedBall"){
-            BrickBehavior(1, collision.gameObject.GetComponent<BallManager>());
+            BrickBehavior(2, collision.gameObject.GetComponent<BallManager>());
     
         }
         else if(collision.gameObject.tag == "BlueBall"){
-            BrickBehavior(2, collision.gameObject.GetComponent<BallManager>());
+            BrickBehavior(1, collision.gameObject.GetComponent<BallManager>());
         }
         
     }

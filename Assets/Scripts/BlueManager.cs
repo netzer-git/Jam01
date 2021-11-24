@@ -9,6 +9,11 @@ public class BlueManager : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rbPlayer;
     [SerializeField] private Vector2 direction;
+    [SerializeField] Animator animator;
+
+    public KeyCode shotKey;
+    [SerializeField] private GameObject player2ShotPref;
+    private int shotPressIndex;
 
     [SerializeField] private float mPlayerSpeed = 1000f;
     [SerializeField] private float maxBallBOunce = 75f;
@@ -20,7 +25,7 @@ public class BlueManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // this.rb = GetComponent<Rigidbody2D>(); // are we sure we need this?
+        shotPressIndex = 0;
     }
 
     // Update is called once per frame
@@ -38,8 +43,12 @@ public class BlueManager : MonoBehaviour
             float newY = Mathf.Clamp(transform.position.y - delta, MIN_HEIGHT, MAX_HEIGHT); 
             transform.position = new Vector3(transform.position.x,newY,transform.position.z);
         }
+        if (Input.GetKeyDown(shotKey))
+        {
+            ShootShot();
+        }
     }
-     
+
     /**
      * effects the bouncyness of the paddle - so the ball will jump back according to the place on the paddle
      * try not to maddle with it
@@ -68,5 +77,25 @@ public class BlueManager : MonoBehaviour
         if (bullet != null){
             lifeMeter.DecreaseLife();
         }
+    }
+
+    private void ShootShot()
+    {
+        Transform firePoint = transform.Find("FirePoint2").transform;
+        GameObject clone = Instantiate(player2ShotPref, firePoint.position, firePoint.rotation);
+        clone.transform.SetParent(transform);
+
+        // clone.transform.Rotate(0, 0, 90);
+        clone.GetComponent<ShotManager>().SetSprite(shotPressIndex);
+        shotPressIndex++;
+    }
+
+    private void ReleaseShot()
+    {
+        Transform clone = transform.Find("Player2Shot(Clone)");
+        clone.GetComponent<Rigidbody2D>().velocity = Vector2.right * 15;
+        clone.GetComponent<Collider2D>().enabled = !clone.GetComponent<Collider2D>().enabled;
+        Destroy(clone, 4f);
+        clone.transform.SetParent(null);
     }
 }
